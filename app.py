@@ -14,11 +14,13 @@ app.secret_key = "apples"
 app.debug=True
 AUTH0_BASE_URL="https://dev-p7gfb1ppjic0nc3g.us.auth0.com"
 
+load_dotenv()
+
 auth0 = oauth.register(
 
         'auth0',
-        client_id="4kCcQd4M5oepaEjmLSaGjzJzTooltn8Y",
-        client_secret="xsXT7A54Fyy9sUa49Y2fvZnUDGNfAUsCQfGsMFbXtxnk4FuAbq-kWAAZ-4IWmA5b",
+        client_id=env.get("CLIENT_ID"),  
+        client_secret=env.get("CLIENT_SECRET"),
         api_base_url=AUTH0_BASE_URL,
         access_token_url=AUTH0_BASE_URL+"/oauth/token",
         authorize_url=AUTH0_BASE_URL+"/authorize",
@@ -82,4 +84,4 @@ def dashboard():
     pretty = json.dumps(session.get("user"),indent=4))
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",debug=True, port=8080)
+    app.run(debug=True, port=8080)
