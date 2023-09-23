@@ -1,4 +1,7 @@
-FROM --platform=linux/amd64 python:3.8-slim-buster as build
+FROM ubuntu:20.04
+RUN apt update && \
+    apt install --no-install-recommends -y \
+    python3.8 python3-pip python3.8-dev
 
 WORKDIR . .
 
